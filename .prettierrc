@@ -1,0 +1,12 @@
+{
+  "endOfLine": "lf",
+  "semi": false,
+  "singleQuote": true,
+  "quoteProps": "preserve",
+  "bracketSameLine": false,
+  "objectCurlySpacing": "always",
+  "arrowParens": "always",
+  "arrowFunctionParentheses": "always",
+  "noInlineConfig": true,
+  "printWidth": 120
+}
