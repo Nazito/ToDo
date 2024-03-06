@@ -17,15 +17,13 @@ module.exports = {
       },
     },
   },
-  'extends': [
-    '@wemake-services/typescript/recommended',
-    '@wemake-services/javascript',
-  ],
+  'extends': ['@wemake-services/typescript/recommended', '@wemake-services/javascript'],
   'plugins': ['import', 'react', 'jsx-a11y', '@typescript-eslint', 'prettier'],
   'rules': {
     'import/no-unresolved': 'off',
     'import/no-named-as-default': 'off',
     'import/named': 'off',
     'max-len': 'off',
+    'no-shadow': 'off',
   },
 }

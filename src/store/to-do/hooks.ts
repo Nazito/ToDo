@@ -1,17 +1,38 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useCallback, useMemo } from 'react'
 import { AppDispatch, RootState } from '../index'
-import { addToDoItem } from './to-do'
-import { IToDoState } from './types'
+import { addToDoItem, setFilter, toggleToDoItem } from './to-do'
+import { ETaskStatus, ITask, IToDoState } from './types'
+
+interface IProps {
+  onAddToDoItem: (toDoItem: ITask) => void
+  onToggleToDoItem: (id: number) => void
+  onSetFilter: (status: ETaskStatus) => void
+}
 
 export const getToDo = (state: RootState): IToDoState => state.todo
 
-export function useToDoAction(): { onAddToDoItem: (toDoItem: Partial<any>) => void } {
+export function useToDoAction(): IProps {
   const dispatch = useDispatch<AppDispatch>()
 
   const onAddToDoItem = useCallback(
-    (toDoItem: Partial<any>) => {
+    (toDoItem: ITask) => {
       dispatch(addToDoItem(toDoItem))
+    },
+    [dispatch],
+  )
+
+  const onToggleToDoItem = useCallback(
+    (id: number) => {
+      dispatch(toggleToDoItem(id))
+    },
+    [dispatch],
+  )
+
+  const onSetFilter = useCallback(
+    (status: ETaskStatus) => {
+      console.log(status, 'status')
+      dispatch(setFilter(status))
     },
     [dispatch],
   )
@@ -19,8 +40,10 @@ export function useToDoAction(): { onAddToDoItem: (toDoItem: Partial<any>) => vo
   return useMemo(
     () => ({
       onAddToDoItem,
+      onToggleToDoItem,
+      onSetFilter,
     }),
-    [onAddToDoItem],
+    [onAddToDoItem, onToggleToDoItem, onSetFilter],
   )
 }
 
