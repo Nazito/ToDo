@@ -31,7 +31,6 @@ export function useToDoAction(): IProps {
 
   const onSetFilter = useCallback(
     (status: ETaskStatus) => {
-      console.log(status, 'status')
       dispatch(setFilter(status))
     },
     [dispatch],
